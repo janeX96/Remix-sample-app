@@ -1,7 +1,7 @@
 import { json } from "@remix-run/node";
-import { Link, Outlet, useLoaderData } from "@remix-run/react";
+import { Link, Outlet, useActionData, useLoaderData } from "@remix-run/react";
 
-import { getPosts } from "~/models/post.server";
+import { deletePost, getPosts } from "~/models/post.server";
 
 export const loader = async () => {
   return json({ posts: await getPosts() });
@@ -20,6 +20,12 @@ export default function PostAdmin() {
                 <Link to={post.slug} className="link">
                   {post.title}
                 </Link>
+                <button
+                  className="deleteButton"
+                  onClick={() => deletePost(post.slug)}
+                >
+                  Delete
+                </button>
               </li>
             ))}
           </ul>
