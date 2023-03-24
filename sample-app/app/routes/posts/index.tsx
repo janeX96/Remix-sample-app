@@ -9,15 +9,15 @@ export const loader = async () => {
 export default function Posts() {
   const { posts } = useLoaderData<typeof loader>();
   return (
-    <main>
-      <h1>Posts</h1>
-      <Link to="admin" className="text-red-600 underline">
+    <main className="posts">
+      <h1 className="header">Posts</h1>
+      <Link to="admin" className="link">
         Admin
       </Link>
-      <ul>
+      <ul className="list">
         {posts.map((post) => (
           <li key={post.slug}>
-            <Link to={post.slug} className="text-blue-600 underline">
+            <Link className="link" to={post.slug}>
               {post.title}
             </Link>
           </li>
